@@ -11,6 +11,8 @@ button.onclick = function() {
 // Modal closes When the user clicks on the X button
 span.onclick = function() {
     modal.style.display = "none";
+    form.reset();
+    document.querySelectorAll('.error-message').forEach(msg => msg.remove());
 }
 
 /**
@@ -88,5 +90,56 @@ document
         else {
             console.log("Form submission complete!");
         };
+        /** Storing an array of objects in localStorage: 
+         * Converts array of objects into a JSON string because localStorage can only store strings
+        */ 
+        const message = document.getElementById("donorMessage").value;
+        const donations = JSON.parse(localStorage.getItem("donationList")) || [];
+        donations.push({
+            name: name,
+            amount: amount,
+            date: date,
+            message: message
+
+        });
+
+        localStorage.setItem("donationList", JSON.stringify(donations));
+
+        document.getElementById("donationForm").reset()
+        modal.style.display = "none";
+
+        displayDonations();
+});
+
+/**
+ * Displays the Donations records in the table by retrieving donation data stored 
+ * in the localStorage under the key 'donationList'
+ * JSON.parse() converts the stored JSON string back into a JavaScript array
+ * 
+ */
+function displayDonations() {
+    const donationData = document.getElementById("tableData");
+    const donations = JSON.parse(localStorage.getItem("donationList")) || [];
+    // Iterates through each donation in the array, the index tracks the position in the array
+    donations.forEach((donations, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${donations.name}</td>
+            <td>${donations.amount}</td>
+            <td>${donations.date}</td>
+            <td>${donations.message}</td>
+            <td><i onclick="removeDonation(${index})" class="fa fa-trash"></i></td>
+        `;
+        donationData.appendChild(row);
 
     });
+}
+
+// Delete row
+function removeDonation(index) {
+    const donations = JSON.parse(localStorage.getItem('donationList')) || [];
+    donations.splice(index, 1);
+    localStorage.setItem('donationList', JSON.stringify(donations));
+    displayDonations();
+}
+window.onload(displayDonations);
