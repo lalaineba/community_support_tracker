@@ -116,6 +116,14 @@ document
         displayDonations();
 });
 
+function totalAmount() {
+    const initialValue = 0
+    const donations = JSON.parse(localStorage.getItem("donationList")) || [];
+    const total = donations.reduce((accumulator, donation) =>
+        accumulator + Number(donation.amount), initialValue);
+    document.getElementById("totalAmount").innerHTML = `$${total}`;
+}
+
 /**
  * Displays the Donations records in the table by retrieving donation data stored 
  * in the localStorage under the key 'donationList'
@@ -138,15 +146,8 @@ function displayDonations() {
             <td><i onclick="removeDonation(${index})" class="fa fa-trash"></i></td>
         `;
         donationData.appendChild(row);
-
     });
-}
-
-function totalAmount() {
-    const initialValue = 0
-    const donations = JSON.parse(localStorage.getItem("donationList")) || [];
-    const total = donations.reduce((sum, donations) => (sum + donations.amount, initialValue))
-    document.getElementById("totalAmount").innerHTML = total
+    totalAmount();
 }
 
 // Delete row
