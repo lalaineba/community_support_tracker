@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/styles.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Home</title>
+        <link rel="import" href="/html/template.html">
+
+        <!-- To load the template -->
+        <script>
+            function loadTemplate() {
+                fetch('/html/template.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('template-container').innerHTML = data;
+                    });
+            }
+            window.onload = loadTemplate;
+        </script>
+	</head>
+    <body>
+        <div id="template-container"></div>
+        <main>
+            <div class="homepage">
+                <div class="detail">
+                    <h1>Community Support Tracker</h1>
+                    <p>
+                    PiXELL River Financial prides itself on being a good citizen. <br>
+                    As part of our commitment to the communities in which we live and work, we developed a Community Support Tracker.<br>
+                    This tool will help us monitor and manage our various community support initiatives, ensuring we're making a meaningful impact.<br>
+                    </p>
+                </div>
+
+                <div class="community">
+                    <img src="/assets/community.jpg" alt="Group of Youths having fun" class="community-jpg">
+                </div>
+            </div>
+        </main>
+
+        <script src="script.js"></script>
+    </body>
+</html>
