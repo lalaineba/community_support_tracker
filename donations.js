@@ -8,11 +8,17 @@ const span = document.getElementsByClassName("close")[0];
 button.onclick = function() {
     modal.style.display = "block";
 }
-// Modal closes When the user clicks on the X button
+// Modal closes when the user clicks on the X button
 span.onclick = function() {
-    modal.style.display = "none";
-    form.reset();
-    document.querySelectorAll('.error-message').forEach(msg => msg.remove());
+    form.classList.add("closing");
+    // Wait for animation to finish before hiding modal
+    setTimeout(() => {
+        modal.style.display = "none";
+        form.classList.remove("closing");
+        // Reset the form and clear error messages
+        form.reset();
+        clearErrors();
+    }, 1000);
 }
 
 /**
@@ -55,7 +61,6 @@ document
     .addEventListener("submit", function (event){
         // Prevents the form from submitting
         event.preventDefault();
-
         // Removes any existing error messages
         clearErrors();
 
@@ -119,20 +124,27 @@ document
  */
 function displayDonations() {
     const donationData = document.getElementById("tableData");
+    donationData.innerHTML = "";
     const donations = JSON.parse(localStorage.getItem("donationList")) || [];
+
     // Iterates through each donation in the array, the index tracks the position in the array
-    donations.forEach((donations, index) => {
+    donations.forEach((donation, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${donations.name}</td>
-            <td>${donations.amount}</td>
-            <td>${donations.date}</td>
-            <td>${donations.message}</td>
+            <td>${donation.name}</td>
+            <td>${donation.amount}</td>
+            <td>${donation.date}</td>
+            <td>${donation.message}</td>
             <td><i onclick="removeDonation(${index})" class="fa fa-trash"></i></td>
         `;
         donationData.appendChild(row);
 
     });
+}
+
+function updateTotalAmount() {
+    const donations = JSON.parse(localStorage.getItem('donationList')) || [];
+
 }
 
 // Delete row
@@ -142,4 +154,5 @@ function removeDonation(index) {
     localStorage.setItem('donationList', JSON.stringify(donations));
     displayDonations();
 }
-window.onload(displayDonations);
+
+window.onload(displayDonations());
