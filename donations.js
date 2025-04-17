@@ -1,4 +1,17 @@
-const form = document.getElementById("donationForm");
+const form = document.getElementById("donationForm")
+
+// MODAL FUNCTIONALITY
+const modal = document.getElementById("donationModal")
+const button = document.getElementById("addDonation")
+const span = document.getElementsByClassName("close")[0];
+// Modal opens When the user clicks on the Contribute button
+button.onclick = function() {
+    modal.style.display = "block";
+}
+// Modal closes When the user clicks on the X button
+span.onclick = function() {
+    modal.style.display = "none";
+}
 
 /**
  * HIDES & SHOWS error messages near input fields to handle user input errors

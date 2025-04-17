@@ -46,6 +46,75 @@ img {
     color: #1C75BC;
 }
 
+/* MODAL */
+.modal {
+    display: none; 
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0,0,0,0.4);
+}
+
+@keyframes entermodal {
+    0% {
+        opacity: 0;
+        transform: translateY(-250px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes exitmodal {
+	0% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateY(-250px);
+	}
+}
+
+/* Form */
+form {
+    position: relative;
+    background-color: #f4f4f4;
+    color: #2b3990;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    width: 40%;
+    animation: entermodal 1s ease 0s 1 normal forwards;
+}
+
+form.closing {
+    animation: exitmodal 1s ease 0s 1 normal forwards;
+}
+
+button {
+    font-family: 'Inter', sans-serif;
+    background-color: #2B3990;
+    color: #f4f4f4;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #394385;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
+
 .error-message {
 	color: red;
 	font-size: 0.9em;
@@ -57,4 +126,22 @@ img {
 
 .error-visible {
 	visibility: visible;
+}
+
+/* Close Button */
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    color: #2b3990;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    text-decoration: none;
+    color: rgb(236, 82, 55);
+    cursor: pointer;
 }

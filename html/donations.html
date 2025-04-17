@@ -30,28 +30,28 @@
 
             <!-- Modal Form -->
             <div id="donationModal" class="modal">
-                <form action="" method="POST" id="donationForm">
+                <form action="https://httpbin.org/post" method="POST" id="donationForm">
                     <span class="close">&times;</span>
                         <div class="input-container">
-                            <label for="charityName">Charity Name:</label>
+                            <label for="charityName">Charity Name:</label><br>
                             <input type="text" id="charityName" name="charityName">
                             <span id="charityNameError" class="error-message" aria-live="polite"></span>
                         </div>
 
                         <div class="input-container">
-                            <label for="donationAmount">Donation Amount:</label>
+                            <label for="donationAmount">Donation Amount:</label><br>
                             <input type="text" id="donationAmount" name="donationAmount">
                             <span id="donationAmountError" class="error-message" aria-live="polite"></span>   
                         </div>
 
                         <div class="input-container">
-                            <label for="donation_date">Date of Donation:</label>
+                            <label for="donation_date">Date of Donation:</label><br>
                             <input type="date" id="donationDate" name="donationDate">
                             <span id="donationDateError" class="error-message" aria-live="polite"></span>                           
                         </div>
 
                         <div class="input-container">
-                                <label for="donor_message">Donor Message:</label>
+                                <label for="donor_message">Donor Message:</label><br>
                                 <textarea name="donorMessage" rows="5" cols="30"></textarea>
                         </div>
 
