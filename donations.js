@@ -100,12 +100,12 @@ document
         */ 
         const message = document.getElementById("donorMessage").value;
         const donations = JSON.parse(localStorage.getItem("donationList")) || [];
+        // Adds new items to the end of the array
         donations.push({
             name: name,
             amount: amount,
             date: date,
             message: message
-
         });
 
         localStorage.setItem("donationList", JSON.stringify(donations));
@@ -129,7 +129,7 @@ function displayDonations() {
 
     // Iterates through each donation in the array, the index tracks the position in the array
     donations.forEach((donation, index) => {
-        const row = document.createElement('tr');
+        const row = document.createElement("tr");
         row.innerHTML = `
             <td>${donation.name}</td>
             <td>${donation.amount}</td>
@@ -142,14 +142,16 @@ function displayDonations() {
     });
 }
 
-function updateTotalAmount() {
-    const donations = JSON.parse(localStorage.getItem('donationList')) || [];
-
+function totalAmount() {
+    const initialValue = 0
+    const donations = JSON.parse(localStorage.getItem("donationList")) || [];
+    const total = donations.reduce((sum, donations) => (sum + donations.amount, initialValue))
+    document.getElementById("totalAmount").innerHTML = total
 }
 
 // Delete row
 function removeDonation(index) {
-    const donations = JSON.parse(localStorage.getItem('donationList')) || [];
+    const donations = JSON.parse(localStorage.getItem("donationList")) || [];
     donations.splice(index, 1);
     localStorage.setItem('donationList', JSON.stringify(donations));
     displayDonations();
