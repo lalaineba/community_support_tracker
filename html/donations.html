@@ -6,16 +6,20 @@
 		<link rel="stylesheet" href="../styles.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Donation Tracker</title>
-        <script>
-            function loadTemplate() {
-                fetch('template.html')
-                    .then(response => response.text())
-                    .then(data => {
-                        document.getElementById('template-container').innerHTML = data;
-                    });
-            }
-            window.onload = loadTemplate();
-        </script>
+        <!-- NAVBAR -->
+        <div class="container">
+            <link rel="stylesheet" href="../styles.css" />
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+            <nav id="navbar">
+                <img src="/assets/pixell_logo.png" alt="PiXeLL River logo">
+                <a href="../index.html" class="nav-button bar-item">Home</a>
+                <a href="/html/donations.html" class="nav-button bar-item">Donations</a>
+            </nav>
+        </div>
+
 	</head>
     <body>
         <div id="template-container"></div>
@@ -81,4 +85,5 @@
         <script src="../donations.js"></script>
         </div>
     </body>
+    <footer>&copy; PiXeLL River Financial 2025</footer>
 </html>
