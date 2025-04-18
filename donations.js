@@ -171,3 +171,5 @@ function removeDonation(index) {
     localStorage.setItem('donationList', JSON.stringify(donations));
     displayDonations();
 }
+
+window.onload = displayDonations();
