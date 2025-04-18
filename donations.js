@@ -68,33 +68,47 @@ document
  * donation amount, and date field are not empty.
  * showError is invoked to show error message next to the input field
  */
+        let isFormValid = true;
+
         const name = document.getElementById("charityName").value;
 	    if (name === "") {
             showError("charityName", "Charity name is required.");
+            isFormValid = false;
         };
 
         const amount = document.getElementById("donationAmount").value;
         if (amount === "") {
             showError("donationAmount", "Donation amount is required.");
-        } else if (amount < 0) {
+            isFormValid = false;
+        }
+        if (amount < 0) {
             showError("donationAmount", "Please enter a positive value.");
-        } else if (isNaN(amount)) {
+            isFormValid = false;
+        }
+        if (isNaN(amount)) {
             showError("donationAmount", "Please enter a numeric value.");
+            isFormValid = false;
         };
 
         const date = document.getElementById("donationDate").value;
         if (date === "") {
             showError("donationDate", "Donation date is required.");
-        } 
-            const selectedDate = new Date(date);
-            const today = new Date()
+            isFormValid = false;
+        }
+        const selectedDate = new Date(date);
+        const today = new Date()
         if (selectedDate > today) {
-            showError("donationDate", "Please enter a valid date.")
+            showError("donationDate", "Please enter a valid date.");
+            isFormValid = false;
         }
 
         else {
             console.log("Form submission complete!");
         };
+        if (!isFormValid) {
+            return;
+        }
+
         /** Storing an array of objects in localStorage: 
          * Converts array of objects into a JSON string because localStorage can only store strings
         */ 
