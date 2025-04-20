@@ -166,6 +166,7 @@ button:hover {
 .error-message {
 	color: red;
 	font-size: 0.9em;
+    font-style: italic;
 	margin-top: 5px;
 	margin-bottom: 10px;
 	display: block;
