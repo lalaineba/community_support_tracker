@@ -3,7 +3,7 @@ const form = document.getElementById("donationForm")
 // MODAL FUNCTIONALITY
 const modal = document.getElementById("donationModal")
 const button = document.getElementById("addDonation")
-const span = document.getElementsByClassName("close")[0];
+const span = document.getElementsByClassName("close");
 // Modal opens When the user clicks on the Contribute button
 button.onclick = function() {
     modal.style.display = "block";
@@ -130,6 +130,10 @@ document
         displayDonations();
 });
 
+/** Loops through the donations array and returns a single value of the donation amount
+ * accumulator = running total
+ * donation = current item in the array
+ */
 function totalAmount() {
     const initialValue = 0
     const donations = JSON.parse(localStorage.getItem("donationList")) || [];
