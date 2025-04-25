@@ -5,24 +5,18 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="../styles.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
         <title>Donation Tracker</title>
-        <!-- NAVBAR -->
-        <div class="container">
-            <link rel="stylesheet" href="../styles.css" />
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-
-            <nav id="navbar">
-                <img src="/assets/pixell_logo.png" alt="PiXeLL River logo">
-                <a href="../index.html" class="nav-button bar-item">Home</a>
-                <a href="/html/donations.html" class="nav-button bar-item">Donations</a>
-            </nav>
-        </div>
-
 	</head>
     <body>
-        <div id="template-container"></div>
+        <!-- NAVBAR -->        
+        <nav id="navbar">
+            <img src="/assets/pixell_logo.png" alt="PiXeLL River logo">
+            <a href="../index.html" class="nav-button bar-item">Home</a>
+            <a href="/html/donations.html" class="nav-button bar-item">Donations</a>
+        </nav>
 
         <div class="grid"> 
             
@@ -79,7 +73,7 @@
 
             <!-- Donation Summary  -->
             <div class="summary-style donation-summary">
-                <h3>Total Donations: <span id="totalAmount">0</span></h3>
+                <h3>Total Donations: <span id="totalAmount"></span></h3>
             </div>
 
         <script src="../donations.js"></script>

@@ -1,9 +1,9 @@
-const form = document.getElementById("donationForm")
+const form = document.getElementById("donationForm");
 
 // MODAL FUNCTIONALITY
-const modal = document.getElementById("donationModal")
-const button = document.getElementById("addDonation")
-const span = document.getElementsByClassName("close");
+const modal = document.getElementById("donationModal");
+const button = document.getElementById("addDonation");
+const span = document.getElementsByClassName("close") [0];
 // Modal opens When the user clicks on the Contribute button
 button.onclick = function() {
     modal.style.display = "block";
@@ -102,9 +102,6 @@ document
             isFormValid = false;
         }
 
-        else {
-            console.log("Form submission complete!");
-        };
         if (!isFormValid) {
             return;
         }
@@ -130,15 +127,13 @@ document
         displayDonations();
 });
 
-/** Loops through the donations array and returns a single value of the donation amount
- * accumulator = running total
- * donation = current item in the array
- */
+// Loops through the donations array and sums up the value of the donation amount.
 function totalAmount() {
-    const initialValue = 0
     const donations = JSON.parse(localStorage.getItem("donationList")) || [];
-    const total = donations.reduce((accumulator, donation) =>
-        accumulator + Number(donation.amount), initialValue);
+    let total = 0;
+        for (let i = 0; i < donations.length; i++) {
+            total += Number(donations[i].amount);
+        }
     document.getElementById("totalAmount").innerHTML = `$${total}`;
 }
 
@@ -146,33 +141,46 @@ function totalAmount() {
  * Displays the Donations records in the table by retrieving donation data stored 
  * in the localStorage under the key 'donationList'
  * JSON.parse() converts the stored JSON string back into a JavaScript array
- * 
  */
 function displayDonations() {
     const donationData = document.getElementById("tableData");
+    // clears previous rows so rows don't duplicate every time the list updates
     donationData.innerHTML = "";
     const donations = JSON.parse(localStorage.getItem("donationList")) || [];
 
-    // Iterates through each donation in the array, the index tracks the position in the array
+    /**
+     * Loops through each donation in the array, 
+     * the index tracks the position in the array, so I can delete it later
+    */
     donations.forEach((donation, index) => {
         const row = document.createElement("tr");
+        /* row.innerHTML: Populates the row
+        * onclick: click event that calls the removeDonations function. 
+        * index tells the function which row to be removed.
+        */
         row.innerHTML = `
             <td>${donation.name}</td>
             <td>${donation.amount}</td>
             <td>${donation.date}</td>
             <td>${donation.message}</td>
-            <td><i onclick="removeDonation(${index})" class="fa fa-trash"></i></td>
+            <td><i onclick="removeDonation(${index})" class="fa fa-trash"></i></td> 
         `;
         donationData.appendChild(row);
     });
+    // recalculates & updates total donations
     totalAmount();
 }
 
-// Delete row
+/* Deletes row. splice removes item indicated by the 
+* index selected (the position where to start removing row) & the number of 
+items to be removed 
+*/
 function removeDonation(index) {
     const donations = JSON.parse(localStorage.getItem("donationList")) || [];
     donations.splice(index, 1);
+    // updated array is saved back to localStorage
     localStorage.setItem('donationList', JSON.stringify(donations));
+    // to refresh the table view
     displayDonations();
 }
 
